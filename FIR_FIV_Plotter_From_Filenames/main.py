@@ -40,7 +40,7 @@ def massProcessing():
     print(len(FIR_RAW))
 
     with open(output, 'a', newline='\n') as f:
-        for j in range(len(FIR_RAW)):
+        for j in range(min(len(FIR_RAW),len(FIV_RAW))):
             print(j)
             writer = csv.writer(f, delimiter=' ')
             writer.writerow([j,FIR_RAW[j],FIV_RAW[j]])
@@ -65,6 +65,7 @@ def massProcessing():
     plt.title('FIR, FIV vs time')
     x = np.linspace(1,len(FIR_RAW),len(FIR_RAW))
     plt.plot(x, FIR_RAW, 'red',marker='o', label = 'FIR')
+    x = np.linspace(1, len(FIV_RAW), len(FIV_RAW))
     plt.plot(x, FIV_RAW, 'violet',marker='o', label='FIV')
     plt.legend()
     plt.show()
